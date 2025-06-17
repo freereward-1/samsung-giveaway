@@ -18,11 +18,11 @@
       background: #1c1c1c;
       color: #fff;
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 16px;
       text-align: center;
       width: 90%;
       max-width: 400px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      box-shadow: 0 0 12px rgba(0,0,0,0.7);
     }
     .card img {
       width: 100%;
@@ -32,17 +32,27 @@
     .button {
       background: #28a745;
       color: white;
-      padding: 12px 20px;
+      padding: 14px 24px;
       border: none;
       border-radius: 8px;
       text-decoration: none;
       font-size: 18px;
       display: inline-block;
-      margin-top: 15px;
+      margin-top: 18px;
+      transition: transform 0.3s ease;
+    }
+    .button:hover {
+      transform: scale(1.05);
+      background-color: #218838;
     }
     .flag {
       font-size: 20px;
       margin-bottom: 10px;
+    }
+    .countdown {
+      font-size: 16px;
+      margin-top: 10px;
+      color: #ff4d4d;
     }
   </style>
 </head>
@@ -52,7 +62,24 @@
     <img src="https://raw.githubusercontent.com/freereward-1/samsung-giveaway/main/assets/assets/assets/IMG_20250617_092230.png" alt="Samsung S25 Ultra"/>
     <h2>Win the Latest Samsung S25 Ultra</h2>
     <p>Only for Android Users in Canada! Enter now for your chance to win.</p>
+    <div class="countdown" id="timer">Offer expires in: 04:00</div>
     <a class="button" href="https://singingfiles.com/show.php?l=0&u=2407601&id=68935" target="_blank">Claim Now</a>
   </div>
+
+  <script>
+    // 4 minute countdown
+    let time = 240;
+    const timer = document.getElementById('timer');
+    const interval = setInterval(() => {
+      const minutes = Math.floor(time / 60);
+      const seconds = time % 60;
+      timer.textContent = `Offer expires in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      time--;
+      if (time < 0) {
+        clearInterval(interval);
+        timer.textContent = "⛔ Offer Expired!";
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
